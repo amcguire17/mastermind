@@ -1,5 +1,6 @@
 class Guess
   attr_reader :colors, :user_guess
+  attr_accessor :secret_code
 
   def initialize(colors)
     @colors = colors
@@ -10,27 +11,40 @@ class Guess
     @user_guess = guess.split("")
   end
 
-  def secret_code
-    secret = []
+  def secret_code_generator
+    @secret_code = []
     @colors.sample(4).each do |color|
-      secret << color.abbr
+      @secret_code << color.abbr
     end
-    secret
+    @secret_code
   end
 
   def element
-    @element_counter = (secret_code.concat (@user_guess)).uniq.length
+    @element_count = @secret_code.uniq.length - (@user_guess - @secret_code).length
+
+    return 0 if @element_count < 0
+    @element_count
+
+
+    # @element_counter = (secret_code.concat (@user_guess)).uniq.length
   end
 
   def position
-    @position_counter = 0
-
+    diff = @user_guess.map.with_index { |x,i| x == @secret_code[i] }
+    correct_index = (diff.each_index.select { |i| diff[i] })
+    num_correct = correct_index.length
   end
+
 
 
 
 
 end
+
+
+
+
+
 
 
 

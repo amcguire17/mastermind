@@ -42,16 +42,25 @@ RSpec.describe Guess do
     colors = [@red, @blue, @yellow, @green, red2, blue2, yellow2, green2]
     guess = Guess.new(colors)
 
-    expect(guess.secret_code).not_to eq(colors)
+
+    expect(guess.secret_code_generator).not_to eq(colors)
 
   end
 
   it "can compare number of elements" do
 
     @guess.add_guess("rrry")
-    @guess.secret_code
+    @guess.secret_code = ["r","b","y","g"]
 
     expect(@guess.element).to eq(4)
+  end
+
+  it "can compare number of positions" do
+
+    @guess.add_guess("rrry")
+    @guess.secret_code = ["r","b","y","g"]
+
+    expect(@guess.position).to eq(1)
   end
 
 end
