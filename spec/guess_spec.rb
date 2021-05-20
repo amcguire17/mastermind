@@ -7,8 +7,8 @@ RSpec.describe Guess do
     @blue = Color.new("blue", "b")
     @yellow = Color.new("yellow", "y")
     @green = Color.new("green", "g")
-    @colors = [@red, @blue, @yellow, @green]
-    @guess = Guess.new(@colors)
+    @code = Code.new([@red, @blue, @yellow, @green])
+    @guess = Guess.new(@code)
   end
 
   it "exists" do

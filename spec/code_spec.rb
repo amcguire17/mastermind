@@ -26,7 +26,7 @@ RSpec.describe Code do
 
   it "can create secret code" do
 
-    expect(@code.secret_code).not_to eq(["r", "b", "y", "g"])
+    expect(@code.secret_code_generator).not_to eq(["r", "b", "y", "g"])
 
   end
 

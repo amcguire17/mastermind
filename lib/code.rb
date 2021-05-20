@@ -1,16 +1,16 @@
 class Code
-  attr_reader :colors, :secret_code
+  attr_reader :colors
 
   def initialize(colors)
     @colors = colors
   end
 
   def secret_code_generator
-    @secret_code = []
+    code = []
     @colors.sample(4).each do |color|
-      @secret_code << color.abbr
+      code << color.abbr
     end
-    @secret_code
+    code
   end
 
 end

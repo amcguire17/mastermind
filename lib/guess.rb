@@ -1,9 +1,9 @@
 class Guess
-  attr_reader :colors, :user_guess
+  attr_reader :user_guess
   attr_accessor :secret_code
 
-  def initialize(colors)
-    @colors = colors
+  def initialize(secret_code)
+    @secret_code = secret_code
   end
 
   def add_guess(guess)
