@@ -3,17 +3,36 @@ class Guess
 
   def initialize(colors)
     @colors = colors
-    @user_guess = []
+    # @user_guess = []
   end
 
   def add_guess(guess)
-    @user_guess << guess
+    @user_guess = guess.split("")
   end
 
   def secret_code
-    @colors.sample(4)
+    secret = []
+    @colors.sample(4).each do |color|
+      secret << color.abbr
+    end
+    secret
   end
+
+  def element
+    @element_counter = (secret_code.concat (@user_guess)).uniq.length
+  end
+
+  def position
+    @position_counter = 0
+
+  end
+
+
+
+
 end
+
+
 
 # def user_input
 #   loop do

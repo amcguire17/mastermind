@@ -3,6 +3,5 @@ class Color
   def initialize(name, abbr)
     @name = name
     @abbr = abbr
-  end 
-
+  end
 end

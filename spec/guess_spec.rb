@@ -23,20 +23,14 @@ RSpec.describe Guess do
 
   end
 
-  it "has no guesses" do
-
-    expect(@guess.user_guess).to eq([])
-
-  end
-
   it "can add guesses" do
 
-    expect(@guess.add_guess(["r", "g", "b", "y"])).to eq(@guess.user_guess)
+    expect(@guess.add_guess("rgby")).to eq(["r", "g", "b", "y"])
   end
 
   it "can create secret code" do
 
-    expect(@guess.secret_code).not_to eq(@colors)
+    expect(@guess.secret_code).not_to eq(["r", "b", "y", "g"])
 
   end
 
@@ -50,6 +44,14 @@ RSpec.describe Guess do
 
     expect(guess.secret_code).not_to eq(colors)
 
+  end
+
+  it "can compare number of elements" do
+
+    @guess.add_guess("rrry")
+    @guess.secret_code
+
+    expect(@guess.element).to eq(4)
   end
 
 end
