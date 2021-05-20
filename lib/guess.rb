@@ -4,19 +4,10 @@ class Guess
 
   def initialize(colors)
     @colors = colors
-    # @user_guess = []
   end
 
   def add_guess(guess)
     @user_guess = guess.split("")
-  end
-
-  def secret_code_generator
-    @secret_code = []
-    @colors.sample(4).each do |color|
-      @secret_code << color.abbr
-    end
-    @secret_code
   end
 
   def element
@@ -38,9 +29,6 @@ class Guess
   def codebreak?
     @secret_code == @user_guess
   end
-
-
-
 end
 
 
