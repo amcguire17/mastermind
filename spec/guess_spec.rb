@@ -1,4 +1,5 @@
 require './lib/color'
+require './lib/code'
 require './lib/guess'
 
 RSpec.describe Guess do
