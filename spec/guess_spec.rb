@@ -52,7 +52,7 @@ RSpec.describe Guess do
     @guess.add_guess("rrry")
     @guess.secret_code = ["r","b","y","g"]
 
-    expect(@guess.element).to eq(4)
+    expect(@guess.element).to eq(2)
   end
 
   it "can compare number of positions" do
@@ -61,6 +61,20 @@ RSpec.describe Guess do
     @guess.secret_code = ["r","b","y","g"]
 
     expect(@guess.position).to eq(1)
+  end
+
+  it "can decide a winner" do
+
+    @guess.add_guess("rrry")
+    @guess.secret_code = ["r","b","y","g"]
+
+    expect(@guess.codebreak?).to eq(false)
+
+    @guess.add_guess("rbyg")
+    @guess.secret_code = ["r","b","y","g"]
+
+    expect(@guess.codebreak?).to eq(true)
+
   end
 
 end

@@ -20,13 +20,13 @@ class Guess
   end
 
   def element
-    @element_count = @secret_code.uniq.length - (@user_guess - @secret_code).length
-
-    return 0 if @element_count < 0
-    @element_count
-
-
-    # @element_counter = (secret_code.concat (@user_guess)).uniq.length
+    if (@user_guess - @secret_code).length == 0 && (@secret_code - @user_guess).length == 0
+      @element_count = @secret_code.uniq.length
+    elsif (@user_guess - @secret_code).length > 0
+      @element_count = @secret_code.uniq.length - (@user_guess - @secret_code).length
+    elsif (@secret_code - @user_guess).length > 0
+      @element_count = @secret_code.uniq.length - (@secret_code - @user_guess).length
+    end
   end
 
   def position
@@ -35,7 +35,9 @@ class Guess
     num_correct = correct_index.length
   end
 
-
+  def codebreak?
+    @secret_code == @user_guess
+  end
 
 
 
