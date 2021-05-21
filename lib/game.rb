@@ -49,47 +49,69 @@ class Game
     end
   end
 
+  def minutes
+    @time.to_i
+  end
 
+  def seconds
+    ((@time - minutes) * 60).to_i
+  end
+
+
+  def code_check
+    if guess.codebreak? == true
+      @end_time = Time.now
+      @time = (@end_time - @start_time).round(0) / 60.0
+      p "Congratulations! You guessed the sequence #{@secret_code.join.upcase} in #{@guess_count} guesses over #{minutes} minutes, #{seconds} seconds."
+      end_game
+      true
+    else
+      p "#{@user_guess.upcase} has #{@guess.element} of the correct elements with #{@guess.position} in the correct positions. You've taken #{@guess_count} guess"
+    end
+  end
+
+  def user_guess_check
+    if @user_guess.length == 4
+      @guess.add_guess(@user_guess.downcase)
+      retur true if code_check == true
+    elsif @user_guess.downcase == 'c'
+      p @secret_code.join.upcase
+      end_game
+      true
+    elsif @user_guess.downcase == 'q'
+      true
+    elsif @user_guess.length < 4
+      @message.long_message
+    elsif @user_guess.length > 4
+      @message.short_message
+    else
+      @message.invalid_message
+    end
+  end
 
   def game_play
-    start_time = Time.now
-    secret_code = @code.secret_code_generator
-    guess = Guess.new(secret_code)
+    @start_time = Time.now
+    @secret_code = @code.secret_code_generator
+    @guess = Guess.new(@secret_code)
     @message.start_message
-    guess_count = 0
+    @guess_count = 0
     loop do
-      guess_count += 1 #changed from guess_counter
+      @guess_count += 1
       @message.guess_message
-      user_guess = gets.chomp
-
-      if user_guess.length == 4 #.count
-        guess.add_guess(user_guess.downcase)
-        if guess.codebreak? == true #changed to guess.codebreak?
-          end_time = Time.now
-          time = (end_time - start_time).round(0)
-
-          p "Congratulations! You guessed the sequence #{secret_code.to_s.upcase} in #{guess_count} guesses over #{time}."
-          end_game
-          break
-        else
-          p "#{user_guess.upcase} has #{guess.element} of the correct elements with #{guess.position} in the correct positions. You've taken #{guess_count} guess"
-        end
-      elsif user_guess.downcase == 'c'
-        p secret_code
+      @user_guess = gets.chomp
+      if user_guess_check == true
         end_game
         break
-      elsif user_guess.downcase == 'q'
-        break
-      elsif user_guess.count > 4
-        @message.long_message
-      elsif user_guess.count < 4
-        @message.short_message
-      else
-        @message.invalid_message
       end
     end
   end
   def end_game
-    @message.end_message #changed from end_game
+    @message.end_message
+    options = gets.chomp.downcase
+
+    if options == 'p'
+      game_play
+    end
+
   end
 end
