@@ -49,26 +49,48 @@ class Game
     end
   end
 
+
+
   def game_play
     start_time = Time.now
     secret_code = @code.secret_code_generator
     guess = Guess.new(secret_code)
     @message.start_message
-    guess_counter = 0
+    guess_count = 0
     loop do
       guess_counter += 1
       @message.guess_message
       user_guess = gets.chomp
-      guess.add_guess(user_guess.downcase)
-      p "#{user_guess.upcase} has #{guess.element} of the correct elements with #{guess.position} in the correct positions. You've taken #{guess_counter} guess"
-      end_time = Time.now
-      break 
+
+      if user_guess.count == 4
+        guess.add_guess(user_guess.downcase)
+        if codebreak? == true
+          end_time = Time.now
+          time = end_time - start_time
+          
+
+          p "Congratulations! You guessed the sequence #{secret_code.to_s.upcase} in #{guess_count} guesses over #{time}."
+          end_game
+          break
+        else
+          p "#{user_guess.upcase} has #{guess.element} of the correct elements with #{guess.position} in the correct positions. You've taken #{guess_count} guess"
+        end
+      elsif user_guess.downcase == 'c'
+        p secret_code
+        end_game
+        break
+      elsif user_guess.downcase == 'q'
+        break
+      elsif user_guess.count > 4
+        @message.long_message
+      elsif user_guess.count < 4
+        @message.short_message
+      else
+        @message.invalid_message
+      end
     end
   end
-end
-
-
-
-
-
+  def end_game
+    @message.end_game
+  end
 end
