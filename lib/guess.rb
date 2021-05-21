@@ -11,13 +11,7 @@ class Guess
   end
 
   def element
-    if (@user_guess - @secret_code).length == 0 && (@secret_code - @user_guess).length == 0
-      @element_count = @secret_code.uniq.length
-    elsif (@user_guess - @secret_code).length > 0
-      @element_count = @secret_code.uniq.length - (@user_guess - @secret_code).length
-    elsif (@secret_code - @user_guess).length > 0
-      @element_count = @secret_code.uniq.length - (@secret_code - @user_guess).length
-    end
+    @element_count = @secret_code.uniq.length - (@secret_code.uniq - @user_guess.uniq).length
   end
 
   def position
