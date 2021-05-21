@@ -4,11 +4,7 @@ require './lib/guess'
 
 RSpec.describe Guess do
   before(:each) do
-    @red = Color.new("red", "r")
-    @blue = Color.new("blue", "b")
-    @yellow = Color.new("yellow", "y")
-    @green = Color.new("green", "g")
-    @code = Code.new([@red, @blue, @yellow, @green])
+    @code = Code.new
     @guess = Guess.new(@code)
   end
 

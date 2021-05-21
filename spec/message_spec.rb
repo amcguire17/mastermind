@@ -50,12 +50,6 @@ RSpec.describe Message do
 
     end
 
-    it "give message for invalid guess" do
-
-      expect(@message.invalid_message).to eq("User input invalid. Try again.")
-
-    end
-
   end
 
   describe 'End Game Messages' do

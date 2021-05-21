@@ -3,12 +3,7 @@ require './lib/code'
 
 RSpec.describe Code do
   before(:each) do
-    @red = Color.new("red", "r")
-    @blue = Color.new("blue", "b")
-    @yellow = Color.new("yellow", "y")
-    @green = Color.new("green", "g")
-    @colors = [@red, @blue, @yellow, @green]
-    @code = Code.new(@colors)
+    @code = Code.new
   end
 
   it "exists" do
@@ -20,26 +15,18 @@ RSpec.describe Code do
 
   it "has colors" do
 
-    expect(@code.colors).to eq(@colors)
+    expect(@code.color_selection[0].name).to eq("red")
+    expect(@code.color_selection[1].name).to eq("blue")
+    expect(@code.color_selection[2].name).to eq("yellow")
+    expect(@code.color_selection[3].name).to eq("green")
 
   end
 
   it "can create secret code" do
 
-    expect(@code.secret_code_generator).not_to eq(["r", "b", "y", "g"])
+    expect(@code.secret_code_generator).not_to eq(@code.color_selection)
+    expect(@code.secret_code_generator.length).to be(4)
 
   end
 
-  it "can select from more colors" do
-    red2 = Color.new("red", "r")
-    blue2 = Color.new("blue", "b")
-    yellow2 = Color.new("yellow", "y")
-    green2 = Color.new("green", "g")
-    colors = [@red, @blue, @yellow, @green, red2, blue2, yellow2, green2]
-    code = Code.new(colors)
-
-
-    expect(code.secret_code_generator).not_to eq(colors)
-
-  end
 end

@@ -34,10 +34,6 @@ class Message
     p "Your guess is too short. Try again."
   end
 
-  def invalid_message
-    p "User input invalid. Try again."
-  end
-
   def end_message
     p "Do you want to (p)lay again or (q)uit?"
   end
