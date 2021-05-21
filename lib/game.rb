@@ -58,16 +58,15 @@ class Game
     @message.start_message
     guess_count = 0
     loop do
-      guess_counter += 1
+      guess_count += 1 #changed from guess_counter
       @message.guess_message
       user_guess = gets.chomp
 
-      if user_guess.count == 4
+      if user_guess.length == 4 #.count
         guess.add_guess(user_guess.downcase)
-        if codebreak? == true
+        if guess.codebreak? == true #changed to guess.codebreak?
           end_time = Time.now
-          time = end_time - start_time
-          
+          time = (end_time - start_time).round(0)
 
           p "Congratulations! You guessed the sequence #{secret_code.to_s.upcase} in #{guess_count} guesses over #{time}."
           end_game
@@ -91,6 +90,6 @@ class Game
     end
   end
   def end_game
-    @message.end_game
+    @message.end_message #changed from end_game
   end
 end
