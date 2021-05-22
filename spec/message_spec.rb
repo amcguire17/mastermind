@@ -23,11 +23,16 @@ RSpec.describe Message do
       expect(@message.options_message).to eq(expect)
     end
 
+    it "has instructions" do
+      expect = ("Use (q)uit to quit at any time.")
+
+      expect(@message.instructions_message).to eq(expect)
+    end
   end
 
   describe 'Game Flow Messages' do
     it "has a message at game start" do
-      expect = "I have generated a sequence with four elements made up of: (r)ed, (g)reen, (b)lue, (y)ellow. Use (q)uit at any time to end the game."
+      expect = ("(r)ed, (g)reen, (b)lue, (y)ellow. Use (q)uit at any time to end the game.")
 
       expect(@message.start_message).to eq(expect)
     end

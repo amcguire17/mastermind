@@ -13,9 +13,9 @@ class Game
   end
 
   def start
-    @message.greeting_message
-    @message.options_message
-    options = gets.chomp.downcase
+    p @message.greeting_message
+    p @message.options_message
+    options = $stdin.gets.chomp.downcase
 
     if options == 'p'
       game_play
@@ -66,9 +66,9 @@ class Game
     elsif @user_guess.downcase == 'q'
       true
     elsif @user_guess.length < 4
-      @message.long_message
+      p @message.long_message
     elsif @user_guess.length > 4
-      @message.short_message
+      p @message.short_message
     end
   end
 
@@ -84,7 +84,7 @@ class Game
   def game_loop
     loop do
       @guess_count += 1
-      @message.guess_message
+      p @message.guess_message
       @user_guess = gets.chomp
       if user_guess_check == true
         break
@@ -93,7 +93,7 @@ class Game
   end
 
   def end_game
-    @message.end_message
+    p @message.end_message
     options = gets.chomp.downcase
 
     if options == 'p'
