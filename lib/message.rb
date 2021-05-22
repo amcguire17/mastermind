@@ -12,7 +12,7 @@ class Message
     p "Codemaker sets secret code made up of any combination/pattern of four colors."
     p "Secret Code can contain duplicate colors."
     p "Codebreaker tries to solve Secret Code by entering their combination of colors."
-    p "Codebreaker will recieve the number of colors correctly guessed and number of correct positions."
+    p "Codebreaker will receive the number of colors correctly guessed and number of correct positions."
     p "Codebreaker repeats entering combination until Secret Code is guessed."
     p "Use (c)heat at any time to see Secret Code."
     p "Use (q)uit to quit at any time."
