@@ -1,13 +1,22 @@
 class Code
-  attr_reader :colors
+  attr_reader :color_selection
 
-  def initialize(colors)
-    @colors = colors
+  def initialize
+    colors = [["red", "r"], ["blue", "b"], ["yellow", "y"], ["green", "g"]]
+
+    @color_selection = []
+
+    4.times {
+      colors.map do |name, abbr|
+        color = Color.new(name, abbr)
+        @color_selection << color
+      end
+    }
   end
 
   def secret_code_generator
     code = []
-    @colors.sample(4).each do |color|
+    @color_selection.sample(4).each do |color|
       code << color.abbr
     end
     code

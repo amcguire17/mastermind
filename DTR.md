@@ -104,7 +104,7 @@ Goals and Expectations for the Project (What does each group member hope to get 
 - Solidifying the material from the previous lessons: enumerables, loops, objects and methods.
 - Main goal is to better understand what we are coding.
 
-Team strengths & collaboration styles (consider discussing your Pairin qualities here): 
+Team strengths & collaboration styles (consider discussing your Pairin qualities here):
 
 How we can use our strengths to overcome obstacles: make sure we communicate and research. If that fails then reach out to others.
 

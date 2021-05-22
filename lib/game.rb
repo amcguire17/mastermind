@@ -5,32 +5,17 @@ require './lib/message'
 
 
 class Game
-  attr_reader :color_selection, :code, :message, :guess
+  attr_reader :code, :message, :guess
 
-  def set_up_colors
-    colors = [["red", "r"], ["blue", "b"], ["yellow", "y"], ["green", "g"]]
-
-    @color_selection = []
-
-    4.times {
-      colors.map do |name, abbr|
-        color = Color.new(name, abbr)
-        @color_selection << color
-      end
-    }
-  end
-
-  def create_objects
-    @code = Code.new(@color_selection)
+  def initialize
+    @code = Code.new
     @message = Message.new
   end
 
   def start
-    set_up_colors
-    create_objects
-    @message.greeting_message
-    @message.options_message
-    options = gets.chomp.downcase
+    p @message.greeting_message
+    p @message.options_message
+    options = $stdin.gets.chomp.downcase
 
     if options == 'p'
       game_play
@@ -59,6 +44,7 @@ class Game
 
 
   def code_check
+    @guess.add_guess(@user_guess.downcase)
     if guess.codebreak? == true
       @end_time = Time.now
       @time = (@end_time - @start_time).round(0) / 60.0
@@ -72,8 +58,7 @@ class Game
 
   def user_guess_check
     if @user_guess.length == 4
-      @guess.add_guess(@user_guess.downcase)
-      retur true if code_check == true
+      return true if code_check == true
     elsif @user_guess.downcase == 'c'
       p @secret_code.join.upcase
       end_game
@@ -81,11 +66,9 @@ class Game
     elsif @user_guess.downcase == 'q'
       true
     elsif @user_guess.length < 4
-      @message.long_message
+      p @message.long_message
     elsif @user_guess.length > 4
-      @message.short_message
-    else
-      @message.invalid_message
+      p @message.short_message
     end
   end
 
@@ -95,23 +78,26 @@ class Game
     @guess = Guess.new(@secret_code)
     @message.start_message
     @guess_count = 0
+    game_loop
+  end
+
+  def game_loop
     loop do
       @guess_count += 1
-      @message.guess_message
+      p @message.guess_message
       @user_guess = gets.chomp
       if user_guess_check == true
-        end_game
         break
       end
     end
   end
+
   def end_game
-    @message.end_message
+    p @message.end_message
     options = gets.chomp.downcase
 
     if options == 'p'
       game_play
     end
-
   end
 end
