@@ -23,6 +23,12 @@ RSpec.describe Message do
       expect(@message.options_message).to eq(expect)
     end
 
+    it "has options to select difficulty" do
+      expect = "What difficulty level would you like to play? (b)eginner, (i)ntermediate, (a)dvanced"
+
+      expect(@message.difficulty_level_message).to eq(expect)
+    end
+
     it "has instructions" do
       expect = ("Use (q)uit to quit at any time.")
 
@@ -31,10 +37,10 @@ RSpec.describe Message do
   end
 
   describe 'Game Flow Messages' do
-    it "has a message at game start" do
+    it "has a message at game start beginner" do
       expect = ("(r)ed, (g)reen, (b)lue, (y)ellow. Use (q)uit at any time to end the game.")
 
-      expect(@message.start_message).to eq(expect)
+      expect(@message.start_beginner_message).to eq(expect)
     end
 
     it "asks for a guess" do

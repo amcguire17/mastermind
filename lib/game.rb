@@ -6,10 +6,9 @@ require './lib/message'
 
 class Game
   attr_reader :code, :message, :guess
-  attr_accessor :time
+  attr_accessor :time, :user_level
 
   def initialize
-    @code = Code.new("b")
     @message = Message.new
   end
 
@@ -19,7 +18,7 @@ class Game
     options = gets.chomp.downcase
 
     if options == 'p'
-      game_play
+      user_difficulty_selection
     elsif options == 'i'
       instructions
     end
@@ -29,7 +28,7 @@ class Game
     @message.instructions_message
     options = gets.chomp.downcase
     if options == 'p'
-      game_play
+      user_difficulty_selection
     else
       start
     end
@@ -58,7 +57,7 @@ class Game
   end
 
   def user_guess_check
-    if @user_guess.length == 4
+    if @user_guess.length == @secret_code.join.length
       return true if code_check == true
     elsif @user_guess.downcase == 'c'
       p @secret_code.join.upcase
@@ -73,11 +72,43 @@ class Game
     end
   end
 
+  def user_difficulty_selection
+    p @message.difficulty_level_message
+    @user_level = gets.chomp.downcase
+    if user_level == "i"
+      intermediate_level
+    elsif user_level == "a"
+      advanced_level
+    elsif user_level == "b"
+      beginner_level
+    end
+  end
+
+  def beginner_level
+    @code = Code.new(user_level)
+    @code.beginner_code
+    @message.start_beginner_message
+    game_play
+  end
+
+  def intermediate_level
+    @code = Code.new(user_level)
+    @code.intermediate_code
+    @message.start_intermediate_message
+    game_play
+  end
+
+  def advanced_level
+    @code = Code.new(user_level)
+    @code.advanced_code
+    @message.start_advanced_message
+    game_play
+  end
+
   def game_play
     @start_time = Time.now
     @secret_code = @code.secret_code_generator
     @guess = Guess.new(@secret_code)
-    @message.start_message
     @guess_count = 0
     game_loop
   end
@@ -98,7 +129,7 @@ class Game
     options = gets.chomp.downcase
 
     if options == 'p'
-      game_play
+      user_difficulty_selection
     end
   end
 end

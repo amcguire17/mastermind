@@ -16,8 +16,9 @@ RSpec.describe Game do
   end
 
   it "has attributes that set up other classes" do
-    expect(@game.code).to be_a(Code)
+
     expect(@game.message).to be_a(Message)
+
   end
 
   it "has time" do
