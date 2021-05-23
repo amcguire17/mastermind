@@ -9,7 +9,7 @@ class Game
   attr_accessor :time
 
   def initialize
-    @code = Code.new
+    @code = Code.new("b")
     @message = Message.new
   end
 
