@@ -6,6 +6,7 @@ require './lib/message'
 
 class Game
   attr_reader :code, :message, :guess
+  attr_accessor :time
 
   def initialize
     @code = Code.new
@@ -15,7 +16,7 @@ class Game
   def start
     p @message.greeting_message
     p @message.options_message
-    options = $stdin.gets.chomp.downcase
+    options = gets.chomp.downcase
 
     if options == 'p'
       game_play
@@ -65,9 +66,9 @@ class Game
       true
     elsif @user_guess.downcase == 'q'
       true
-    elsif @user_guess.length < 4
+    elsif @user_guess.length < @secret_code.join.length
       p @message.long_message
-    elsif @user_guess.length > 4
+    elsif @user_guess.length > @secret_code.join.length
       p @message.short_message
     end
   end

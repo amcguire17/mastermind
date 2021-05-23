@@ -15,8 +15,14 @@ class Guess
   end
 
   def position
-    diff = @user_guess.map.with_index { |x,i| x == @secret_code[i] }
-    correct_index = (diff.each_index.select { |i| diff[i] })
+    diff = @user_guess.map.with_index do |color, index|
+      color == @secret_code[index]
+    end
+
+    correct_index = diff.select do |index|
+      index == true
+    end
+
     num_correct = correct_index.length
   end
 
