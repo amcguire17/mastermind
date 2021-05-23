@@ -4,7 +4,7 @@ require './lib/guess'
 
 RSpec.describe Guess do
   before(:each) do
-    @code = Code.new
+    @code = Code.new("b")
     @guess = Guess.new(@code)
   end
 

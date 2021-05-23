@@ -8,8 +8,12 @@ class Message
     "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
   end
 
+  def difficulty_level_message
+    "What difficulty level would you like to play? (b)eginner, (i)ntermediate, (a)dvanced"
+  end
+
   def instructions_message
-    p "Codemaker sets secret code made up of any combination/pattern of four colors."
+    p "Codemaker sets secret code made up of any combination/pattern of four to six colors."
     p "Secret Code can contain duplicate colors."
     p "Codebreaker tries to solve Secret Code by entering their combination of colors."
     p "Codebreaker will receive the number of colors correctly guessed and number of correct positions."
@@ -18,10 +22,19 @@ class Message
     p "Use (q)uit to quit at any time."
   end
 
-  def start_message
+  def start_beginner_message
     p "I have generated a sequence with four elements made up of:"
     p "(r)ed, (g)reen, (b)lue, (y)ellow. Use (q)uit at any time to end the game."
+  end
 
+  def start_intermediate_message
+    p "I have generated a sequence with six elements made up of:"
+    p "(r)ed, (g)reen, (b)lue, (y)ellow, (p)urple. Use (q)uit at any time to end the game."
+  end
+
+  def start_advanced_message
+    p "I have generated a sequence with eight elements made up of:"
+    p "(r)ed, (g)reen, (b)lue, (y)ellow, (p)urple, (o)range. Use (q)uit at any time to end the game."
   end
 
   def guess_message
