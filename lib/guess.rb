@@ -11,7 +11,7 @@ class Guess
   end
 
   def element
-    @element_count = @secret_code.uniq.length - (@secret_code.uniq - @user_guess.uniq).length
+    @secret_code.uniq.length - (@secret_code.uniq - @user_guess.uniq).length
   end
 
   def position
